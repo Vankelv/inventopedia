@@ -11,7 +11,7 @@ const InventionList = () => {
   const cardsPerRow = 3;
 
   useEffect(() => {
-    fetch("http://192.168.0.191:8080/inventions")
+    fetch("http://localhost:8080/inventions")
       .then((res) => res.json())
       .then((data) => setInventions(data))
       .catch((err) => console.log(err));

@@ -19,7 +19,7 @@ function Home() {
 
     const searchKeywords = search.toLowerCase().split(" "); // Split search into keywords
 
-    fetch(`http://192.168.0.191:8080/inventions?search=${search}`)
+    fetch(`http://localhost:8080/inventions?search=${search}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not OK");
@@ -55,7 +55,7 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch("http://192.168.0.191:8080/inventionsByYear?year=2014&limit=4")
+    fetch("http://localhost:8080/inventionsByYear?year=2014&limit=4")
       .then((response) => response.json())
       .then((data) => setLatestInventions(data))
       .catch((error) =>

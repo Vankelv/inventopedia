@@ -12,14 +12,17 @@ function Home() {
   const [searchInfo, setSearchInfo] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [latestInventions, setLatestInventions] = useState([]);
+  
+  const apiUrl = "https://who-invent-what-server.vercel.app";
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (search === "") return;
 
     const searchKeywords = search.toLowerCase().split(" "); // Split search into keywords
+    
 
-    fetch(`http://localhost:8080/inventions?search=${search}`)
+    fetch(`${apiUrl}/inventions?search=${search}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not OK");
@@ -55,7 +58,7 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch("http://localhost:8080/inventionsByYear?year=2014&limit=4")
+    fetch(`${apiUrl}/inventionsByYear?year=2014&limit=4`)
       .then((response) => response.json())
       .then((data) => setLatestInventions(data))
       .catch((error) =>

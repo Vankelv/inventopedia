@@ -1,13 +1,12 @@
 
-const express = require("express");
-const cors = require("cors");
-const { MongoClient } = require("mongodb"); // Import MongoClient from the MongoDB driver
+const express = require('express');
+
+const { MongoClient } = require("mongodb"); 
+const cors = require('cors');
 
 const app = express();
-app.use(express.json());
-app.use(cors({
-  origin: ["https://who-invent-what.vercel.app", "http://localhost:5173"]
-}));
+
+app.use(cors());
 
 
 require('dotenv').config(); 

@@ -13,7 +13,7 @@ function Home() {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [latestInventions, setLatestInventions] = useState([]);
   
-  const apiUrl = "https://who-invent-what-server.vercel.app";
+  const apiUrl = "https://who-invent-what-81au.vercel.app/";
 
   const handleSearch = (e) => {
     e.preventDefault();

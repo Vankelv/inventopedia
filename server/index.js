@@ -8,7 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
-const uri = 'mongodb+srv://vankelvin603:0546Van@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority'; // MongoDB URI
+require('dotenv').config(); 
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 let db; // Reference to the MongoDB database

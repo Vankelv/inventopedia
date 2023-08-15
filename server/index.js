@@ -1,12 +1,14 @@
 
 const express = require("express");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 const { MongoClient } = require("mongodb"); // Import MongoClient from the MongoDB driver
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors({
+  origin: ["https://who-invent-what.vercel.app", "http://localhost:5173"]
+}));
+
 
 require('dotenv').config(); 
 const uri = process.env.MONGODB_URI;
@@ -48,22 +50,21 @@ app.get("/categories", async (req, res) => {
     return res.status(500).json({ error: "Failed to fetch categories" });
   }
 });
-
-
 app.get("/inventions", async (req, res) => {
   try {
     const inventions = await db.collection("inventions").find().toArray();
+    res.set('Access-Control-Allow-Origin', '*'); // Change 'response' to 'res'
     return res.json(inventions);
   } catch (err) {
     return res.status(500).json({ error: "Failed to fetch inventions from MongoDB" });
   }
 });
 
-
 // LATEST INVENTIONS
 
 app.get("/inventionsByYear", async (req, res) => {
-  const year = parseInt(req.query.year) || 2015; // Default to the year 2015 if no year is provided in the query string
+  const year = parseInt(req.query.year) || 2015; 
+  res.set('Access-Control-Allow-Origin', '*'); // Change 'response' to 'res'
   
   try {
     const inventions = await db.collection("inventions").find({ year: { $gte: year } }).toArray();
@@ -72,6 +73,8 @@ app.get("/inventionsByYear", async (req, res) => {
     return res.status(500).json({ error: "Failed to fetch inventions by year" });
   }
 });
+
+
 
 app.post("/inventions", async (req, res) => {
   const { inventionName, inventor, year, category, country } = req.body;
@@ -98,7 +101,3 @@ app.post("/inventions", async (req, res) => {
 
 
 // ... Rest of your routes ...
-
-app.listen(8080, () => {
-  console.log("Running on port 8080");
-});

@@ -1,12 +1,18 @@
 
 const express = require("express");
-const cors = require("cors");
 const bcrypt = require("bcrypt");
 const { MongoClient } = require("mongodb"); // Import MongoClient from the MongoDB driver
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 
 const uri = 'mongodb+srv://vankelvin603:0546Van@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority'; // MongoDB URI
 const client = new MongoClient(uri);

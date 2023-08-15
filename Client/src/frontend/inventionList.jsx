@@ -9,9 +9,9 @@ const InventionList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6; // Number of items to display per page
   const cardsPerRow = 3;
-
+  const apiUrl = "https://who-invent-what-server.vercel.app";
   useEffect(() => {
-    fetch("http://localhost:8080/inventions")
+    fetch(`${apiUrl}/inventions`)
       .then((res) => res.json())
       .then((data) => setInventions(data))
       .catch((err) => console.log(err));

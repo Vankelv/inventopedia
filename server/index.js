@@ -1,113 +1,41 @@
+
 const express = require("express");
-const mysql = require("mysql");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const { MongoClient } = require("mongodb"); // Import MongoClient from the MongoDB driver
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "whoinventwhat",
-});
+const uri = 'mongodb+srv://vankelvin603:0546Van@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority'; // MongoDB URI
+const client = new MongoClient(uri);
+
+let db; // Reference to the MongoDB database
 
 // Connect to the database
-db.connect((err) => {
+client.connect(err => {
   if (err) {
     console.error("Failed to connect to the database:", err);
     return;
   }
-  console.log("Connected to the database");
+  console.log("Connected to MongoDB");
+  
+  // Specify the database you want to use
+  db = client.db("whoinventwhat");
 });
 
 app.get("/", (req, res) => {
   return res.json("From server side");
-}); 
-
-app.get("/users", (req, res) => {
-  const sql = "SELECT * FROM users";
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
-});
-// ADD USER AND AUTHENTICATE
-app.post("/users", (req, res) => {
-  const { fName, lName, email, userName, password } = req.body;
-
-  const sqlSelect = "SELECT * FROM users WHERE email = ? OR userName = ?";
-  db.query(sqlSelect, [email, userName], (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Failed to create account" });
-    }
-
-    if (result.length > 0) {
-      // User with the same email or username already exists
-      return res
-        .status(409)
-        .json({ error: "Email or username already exists" });
-    }
-
-    // Hash the password
-    bcrypt.hash(password, 10, (err, hashedPassword) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ error: "Failed to create account" });
-      }
-
-      const sqlInsert = `INSERT INTO users (fName, lName, email, userName, password) VALUES (?, ?, ?, ?, ?)`;
-      const values = [fName, lName, email, userName, hashedPassword];
-
-      db.query(sqlInsert, values, (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ error: "Failed to create account" });
-        }
-
-        return res.json({ message: "Account created successfully" });
-      });
-    });
-  });
 });
 
-// SIGNIN AUTHENTICATION
-app.post("/signin", (req, res) => {
-  const { email, password } = req.body;
-
-  const sqlSelect = "SELECT * FROM users WHERE email = ? OR userName = ?";
-  db.query(sqlSelect, [userName, email], (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Failed to sign in" });
-    }
-
-    if (result.length === 0) {
-      // User not found
-      return res.status(401).json({ error: "Invalid credentials" });
-    }
-
-    const user = result[0];
-
-    // Compare the provided password with the hashed password stored in the database
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ error: "Failed to sign in" });
-      }
-
-      if (!isMatch) {
-        // Passwords do not match
-        return res.status(401).json({ error: "Invalid credentials" });
-      }
-
-      // Authentication successful
-      return res.json({ message: "Authentication successful", user });
-    });
-  });
+app.get("/users", async (req, res) => {
+  try {
+    const users = await db.collection("users").find().toArray();
+    return res.json(users);
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to fetch users" });
+  }
 });
 
 app.get("/categories", (req, res) => {
@@ -152,6 +80,8 @@ app.post("/inventions", (req, res) => {
     return res.json({ message: "Invention data submitted successfully" });
   });
 });
+
+// ... Rest of your routes ...
 
 app.listen(8080, () => {
   console.log("Running on port 8080");

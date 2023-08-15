@@ -2,10 +2,6 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const { MongoClient } = require("mongodb");
-
-
-const mongoUrl = 'mongodb+srv://vankelvin603:0546Van@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority'
 
 const app = express();
 app.use(express.json());
@@ -160,10 +156,3 @@ app.post("/inventions", (req, res) => {
 app.listen(8080, () => {
   console.log("Running on port 8080");
 });
-
-MongoClient.connect(mongoUrl, () =>{
-  if(err){
-    throw err;
-  }
-  console.log('Connected.db')
-})

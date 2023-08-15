@@ -38,48 +38,63 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/categories", (req, res) => {
-  const sql = "SELECT * FROM categories";
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
+app.get("/categories", async (req, res) => {
+  try {
+    const categories = await db.collection("categories").find().toArray();
+    return res.json(categories);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Failed to fetch categories" });
+  }
 });
 
-app.get("/inventions", (req, res) => {
-  const sql = "SELECT * FROM inventions";
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
+
+app.get("/inventions", async (req, res) => {
+  try {
+    const inventions = await db.collection("inventions").find().toArray();
+    return res.json(inventions);
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to fetch inventions from MongoDB" });
+  }
 });
+
 
 // LATEST INVENTIONS
 
-app.get("/inventionsByYear", (req, res) => {
-  const year = req.query.year || 2015; // Default to the year 2000 if no year is provided in the query string
-  const sql = "SELECT * FROM inventions WHERE year >= ?";
-  db.query(sql, [year], (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
+app.get("/inventionsByYear", async (req, res) => {
+  const year = parseInt(req.query.year) || 2015; // Default to the year 2015 if no year is provided in the query string
+  
+  try {
+    const inventions = await db.collection("inventions").find({ year: { $gte: year } }).toArray();
+    return res.json(inventions);
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to fetch inventions by year" });
+  }
 });
 
-app.post("/inventions", (req, res) => {
+app.post("/inventions", async (req, res) => {
   const { inventionName, inventor, year, category, country } = req.body;
 
-  const sql = `INSERT INTO inventions (inventionName, inventor, year, category, country) VALUES (?, ?, ?, ?, ?)`;
-  const values = [inventionName, inventor, year, category, country];
+  try {
+    const result = await db.collection("inventions").insertOne({
+      inventionName,
+      inventor,
+      year,
+      category,
+      country,
+    });
 
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error(err);
+    if (result.insertedCount === 1) {
+      return res.json({ message: "Invention data submitted successfully" });
+    } else {
       return res.status(500).json({ error: "Failed to submit invention data" });
     }
-
-    return res.json({ message: "Invention data submitted successfully" });
-  });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Failed to submit invention data" });
+  }
 });
+
 
 // ... Rest of your routes ...
 

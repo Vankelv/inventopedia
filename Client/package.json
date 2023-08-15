@@ -42,7 +42,8 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4",
-      "immer": ">=9.0.6"
+    "immer": ">=9.0.6",
+    "nth-check": ">=2.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

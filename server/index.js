@@ -20,18 +20,6 @@ const client = new MongoClient(uri);
  
 let db; // Reference to the MongoDB database
 
-// Connect to the database 
-// client.connect(err => {
-//   if (err) {
-//     console.error("Failed to connect to the database:", err);
-//     return;
-//   }
-//   console.log("Connected to MongoDB");
-
-//   // Specify the database you want to use
-//   db = client.db("whoinventwhat");
-// });
-
 async function connect(){
   try{
     await client.connect(uri);
@@ -39,6 +27,7 @@ async function connect(){
   } catch (error) {
     console.error(error);
   }
+  db = client.db("whoinventwhat");
 }
 connect();
 

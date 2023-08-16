@@ -1,17 +1,21 @@
-
+const { MongoClient } = require("mongodb");
 const express = require('express');
-
-const { MongoClient } = require("mongodb"); 
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
+const corsOptions = {
+  origin: 'https://who-invent-what-81au.vercel.app',
+  methods: ['GET', 'POST'],
+  credentials: true,
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
+app.use(express.json());
 
-
-require('dotenv').config(); 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
+
 
 let db; // Reference to the MongoDB database
 
@@ -22,14 +26,15 @@ client.connect(err => {
     return;
   }
   console.log("Connected to MongoDB");
-  
+
   // Specify the database you want to use
   db = client.db("whoinventwhat");
 });
 
 app.get("/", (req, res) => {
-  return res.json("From server side");
+  return res.json({ message: "From server side" });
 });
+
 
 app.get("/users", async (req, res) => {
   try {
@@ -98,5 +103,7 @@ app.post("/inventions", async (req, res) => {
   }
 });
 
-
-// ... Rest of your routes ...
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

@@ -1,7 +1,6 @@
 const { MongoClient } = require("mongodb");
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 const corsOptions = {
@@ -13,29 +12,41 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-const uri = process.env.MONGODB_URI;
+const DB_User = encodeURIComponent("vankelvin603");
+const Db_pass = encodeURIComponent('0546Van')
+const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
-
+ 
 let db; // Reference to the MongoDB database
 
 // Connect to the database 
-client.connect(err => {
-  if (err) {
-    console.error("Failed to connect to the database:", err);
-    return;
-  }
-  console.log("Connected to MongoDB");
+// client.connect(err => {
+//   if (err) {
+//     console.error("Failed to connect to the database:", err);
+//     return;
+//   }
+//   console.log("Connected to MongoDB");
 
-  // Specify the database you want to use
-  db = client.db("whoinventwhat");
-});
+//   // Specify the database you want to use
+//   db = client.db("whoinventwhat");
+// });
+
+async function connect(){
+  try{
+    await client.connect(uri);
+    console.log("Connected to MongoDb")
+  } catch (error) {
+    console.error(error);
+  }
+}
+connect();
 
 app.get("/", (req, res) => {
   return res.json({ message: "From server side" });
 });
 
-
+ 
 app.get("/users", async (req, res) => {
   try {
     const users = await db.collection("users").find().toArray();
@@ -103,7 +114,7 @@ app.post("/inventions", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+
+app.listen( () => {
+  console.log(`Server is running on port`);
 });

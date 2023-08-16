@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 const corsOptions = {
-  origin: 'https://who-invent-what-81au.vercel.app',
+  origin: 'http://172.20.10.5:5173',
   methods: ['GET', 'POST'],
   credentials: true,
 };
@@ -19,7 +19,7 @@ const client = new MongoClient(uri);
 
 let db; // Reference to the MongoDB database
 
-// Connect to the database
+// Connect to the database 
 client.connect(err => {
   if (err) {
     console.error("Failed to connect to the database:", err);

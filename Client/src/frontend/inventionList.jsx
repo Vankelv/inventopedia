@@ -12,7 +12,7 @@ const InventionList = () => {
   const cardsPerRow = 3;
   const apiUrl = "https://who-invent-what-81au.vercel.app/";
   useEffect(() => {
-    fetch("http://172.20.10.5:3000/inventions")
+    fetch("http://localhost:3000/inventions")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched data:", data); // Debugging log

@@ -20,7 +20,7 @@ const Db_pass = encodeURIComponent('0546Van')
 const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
- 
+
 let db; // Reference to the MongoDB database
 
 async function connect(){
@@ -49,7 +49,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/Categories", async (req, res) => {
+app.get("/categories", async (req, res) => {
   try {
     const categories = await db.collection("categories").find().toArray();
     return res.json(categories);

@@ -53,7 +53,7 @@ const FormComponent = () => {
       country: selectedCountry ? selectedCountry.value : null,
     };
 
-    fetch("http://localhost:8080/inventions", {
+    fetch("http://localhost:3000/inventions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const FormComponent = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/categories")
+    fetch(`http://http://localhost:3000/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.log(err));

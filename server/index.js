@@ -4,10 +4,13 @@ const cors = require('cors');
 
 const app = express();
 const corsOptions = {
-  origin: 'http://172.20.10.5:5173',
+  origin: 'http://localhost:5173',
   methods: ['GET', 'POST'],
   credentials: true,
 };
+
+app.use(cors(corsOptions));
+app.use(express.json());
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -21,13 +24,14 @@ const client = new MongoClient(uri);
 let db; // Reference to the MongoDB database
 
 async function connect(){
+  db = client.db("Whoinventwhat");
   try{
     await client.connect(uri);
     console.log("Connected to MongoDb")
   } catch (error) {
     console.error(error);
   }
-  db = client.db("whoinventwhat");
+
 }
 connect();
 
@@ -45,7 +49,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/categories", async (req, res) => {
+app.get("/Categories", async (req, res) => {
   try {
     const categories = await db.collection("categories").find().toArray();
     return res.json(categories);
@@ -103,7 +107,7 @@ app.post("/inventions", async (req, res) => {
   }
 });
 
-
-app.listen( () => {
-  console.log(`Server is running on port`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

@@ -21,7 +21,7 @@ function Home() {
     const searchKeywords = search.toLowerCase().split(" "); // Split search into keywords
     
 
-    fetch(`http://localhost:3000/inventions?search=${search}`)
+    fetch(`https://who-invent-what-81au.vercel.app/inventions?search=${search}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not OK");

@@ -13,7 +13,6 @@ import RightBar from "./components/rightBar";
 const Dashboard = () => {
   const [greeting, setGreeting] = useState("");
   const [inventions, setInventions] = useState([]);
-  const apiUrl = "https://who-invent-what-81au.vercel.app/";
   useEffect(() => {
     const currentTime = new Date().getHours();
     if (currentTime >= 1 && currentTime < 12) {
@@ -27,7 +26,7 @@ const Dashboard = () => {
     }
   }, []);
   useEffect(() => {
-    fetch(`${apiUrl}/inventions`)
+    fetch(`https://who-invent-what-81au.vercel.app/inventions`)
       .then((res) => res.json())
       .then((data) => setInventions(data))
       .catch((err) => console.log(err));

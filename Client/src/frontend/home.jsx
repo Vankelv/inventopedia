@@ -57,7 +57,7 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch("http://localhost:3000/inventionsByYear?year=2015&limit=3")
+    fetch("https://who-invent-what-81au.vercel.app/inventionsByYear?year=2015&limit=3")
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched latest inventions:", data);

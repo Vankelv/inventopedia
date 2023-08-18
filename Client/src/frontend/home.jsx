@@ -12,16 +12,17 @@ function Home() {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [latestInventions, setLatestInventions] = useState([]);
   
-
+  const apiUrl = "https://who-invent-what-81au.vercel.app";
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (search === "") return;
 
     const searchKeywords = search.toLowerCase().split(" "); // Split search into keywords
+   
     
 
-    fetch(`https://who-invent-what-81au.vercel.app/inventions?search=${search}`)
+    fetch(`${apiUrl}/inventions?search=${search}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not OK");
@@ -57,7 +58,7 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch("https://who-invent-what-81au.vercel.app/inventionsByYear?year=2015&limit=3")
+    fetch(`${apiUrl}/inventionsByYear?year=2015&limit=3`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched latest inventions:", data);

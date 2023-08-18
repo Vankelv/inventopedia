@@ -102,7 +102,7 @@ const FormComponent = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://http://localhost:3000/categories`)
+    fetch(`https://who-invent-what-81au.vercel.app/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.log(err));

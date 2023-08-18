@@ -23,7 +23,7 @@ const InventList = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/inventions")
+    fetch("https://who-invent-what-81au.vercel.app/inventions")
       .then((res) => res.json())
       .then((data) => setInventions(data))
       .catch((err) => console.log(err));

@@ -3,7 +3,6 @@ import "./ui/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import inventionImage from "./ui/portada.png";
-import { Carousel } from "antd";
 import Navbar from "./ui/components/navbar";
 
 function Home() {
@@ -58,18 +57,19 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch("http://localhost:3000/inventionsByYear?year=2014&limit=4")
+    fetch("http://localhost:3000/inventionsByYear?year=2015&limit=3")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched latest inventions:", data); // Add this line
+        console.log("Fetched latest inventions:", data);
         setLatestInventions(data);
+        console.log("latestInventions state after setting:", latestInventions);
       })
       .catch((error) => {
         console.error("Error fetching latest inventions:", error);
       });
   }, []);
   
-
+  
   return (
     <div>
       <Navbar />
@@ -156,7 +156,7 @@ function Home() {
               </div>
             ))
           ) : (
-            <p>No latest inventions found from the year 2015 and above.</p>
+            <p>No latest inventions found from the year 2014 and above.</p>
           )}
         </div>
         <button className="read_more">

@@ -20,7 +20,7 @@ const Db_pass = encodeURIComponent('0546Van')
 const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
- 
+
 let db; // Reference to the MongoDB database
 
 async function connect(){
@@ -49,7 +49,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/Categories", async (req, res) => {
+app.get("/categories", async (req, res) => {
   try {
     const categories = await db.collection("categories").find().toArray();
     return res.json(categories);
@@ -69,20 +69,33 @@ app.get("/inventions", async (req, res) => {
 });
 
 // LATEST INVENTIONS
-
 app.get("/inventionsByYear", async (req, res) => {
-  const year = parseInt(req.query.year) || 2015; 
-  res.set('Access-Control-Allow-Origin', '*'); // Change 'response' to 'res'
-  
+  const year = parseInt(req.query.year) || 2015;
+  const limit = parseInt(req.query.limit) || 10; // Default limit is set to 10, change as needed
+  res.set('Access-Control-Allow-Origin', '*');
+
   try {
-    const inventions = await db.collection("inventions").find({ year: { $gte: year } }).toArray();
+    const inventions = await db.collection("inventions")
+      .find({ year: { $gte: year } })
+      .limit(limit) // Apply the limit to the database query
+      .toArray();
+
     return res.json(inventions);
   } catch (err) {
+    console.error("Error fetching inventions by year:", err);
     return res.status(500).json({ error: "Failed to fetch inventions by year" });
   }
 });
 
 
+// app.get("/inventionsByYear",(req, res) => {
+//   const year = req.query.year || 2015;
+//   const sql = "SELECT * FROM inventions WHERE year >= ?";
+//   db.query(sql, [year], (err, data) => {
+//     if(err) return res.json(err);
+//     return res.json(data);
+//   });
+// });
 
 app.post("/inventions", async (req, res) => {
   const { inventionName, inventor, year, category, country } = req.body;

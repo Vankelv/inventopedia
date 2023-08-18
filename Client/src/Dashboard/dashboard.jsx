@@ -27,7 +27,7 @@ const Dashboard = () => {
     }
   }, []);
   useEffect(() => {
-    fetch(`${apiUrl}/inventions`)
+    fetch(`http://localhost:3000/inventions`)
       .then((res) => res.json())
       .then((data) => setInventions(data))
       .catch((err) => console.log(err));

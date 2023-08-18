@@ -27,7 +27,7 @@ const Dashboard = () => {
     }
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:3000/inventions`)
+    fetch(`${apiUrl}/inventions`)
       .then((res) => res.json())
       .then((data) => setInventions(data))
       .catch((err) => console.log(err));
@@ -69,7 +69,7 @@ const Dashboard = () => {
                   {newInventions}
                 </p>
               </div>
-              <div className="active-users  stats">
+              <div className="inventions active-users  stats">
                 <h4>Active Users</h4>
                 <p>
                   <span>

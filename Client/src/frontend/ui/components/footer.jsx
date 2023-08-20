@@ -34,7 +34,7 @@ const Footer = () => {
              <p>Who Invent What</p>
             </Col>
             <Col className="contact flex">
-            <p>A product of<span className="comp"> Nextline Gh</span></p>
+            <p>Developed By:<span className="comp"> <a href="https://van.nextlinegh.com" target="_blank"> Van Kelvin</a></span></p>
             </Col>
             <Col className="contact flex">
            <p>&copy; {currentYear}, All right reserved</p>

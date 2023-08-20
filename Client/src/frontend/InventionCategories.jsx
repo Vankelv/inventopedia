@@ -47,8 +47,8 @@ const InventionCategories = () => {
             </div>
           </div>
           <div class="col card">
-            <img src="/imgs/categories/broccoli.png" alt="computer" style={{maxWidth: "100px"}}/>
-            <h5 className="catname">Fashion</h5>
+            <img src="/imgs/categories/tv.png" alt="computer" style={{maxWidth: "100px"}}/>
+            <h5 className="catname">Entertaiment</h5>
             <div className="count flex">
               <div>
                 <FontAwesomeIcon icon={faArrowRight} className="farrow" />

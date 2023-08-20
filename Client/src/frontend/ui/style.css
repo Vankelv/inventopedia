@@ -187,7 +187,8 @@
 .cards .ant-card-body {
   background: #dfdbdb;
   text-align: left;
-      height: 450px;
+  height: 450px;
+  padding-bottom: 20px;
 }
 .ant-card-body .invention_img{
   top: 0;
@@ -341,6 +342,7 @@ hr.solid {
 }
 .ltIn .card{
   height: 400px;
+  padding-bottom: 20px;
 }
 
 
@@ -493,4 +495,7 @@ hr.solid {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: none;
   }
+}
+.ltIn .inventview{
+  color: #725be7;
 }

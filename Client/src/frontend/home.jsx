@@ -75,7 +75,11 @@ function Home() {
     <div>
       <Navbar />
       <div className="section">
-        <h2>Search for your favourite Inventors</h2>
+        <h2>Search for your favourite Inventions </h2>
+       <p style={{
+        marginTop: "-20px"
+       }}>Discover the world of inventions and who is behind them and their creation date</p>
+        
         <form className="search-container flex" onSubmit={handleSearch}>
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
           <input

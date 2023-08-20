@@ -70,6 +70,7 @@ const InventionList = () => {
                     <p>
                       <strong>Year:</strong> {val.year}
                     </p>
+                    <button className="inventview">View</button>
                   </Card>
                 </div>
               ))}

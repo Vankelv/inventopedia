@@ -92,14 +92,7 @@ app.get("/inventionsByYear", async (req, res) => {
 });
 
 
-// app.get("/inventionsByYear",(req, res) => {
-//   const year = req.query.year || 2015;
-//   const sql = "SELECT * FROM inventions WHERE year >= ?";
-//   db.query(sql, [year], (err, data) => {
-//     if(err) return res.json(err);
-//     return res.json(data);
-//   });
-// });
+
 
 app.post("/inventions", async (req, res) => {
   const { inventionName, inventor, year, category, country } = req.body;

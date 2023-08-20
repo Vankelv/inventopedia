@@ -153,6 +153,7 @@ function Home() {
                   </h2>
                   <p>Invented: {invention.inventionName}</p>
                   <p>Date: {invention.year}</p>
+                  <button className="inventview">View</button>
                 </div>
               </div>
             ))

@@ -21,12 +21,7 @@ const Footer = () => {
     }, []);
   
   return (
-    <div id="footer">
-    {isMobile ? (
-      <div className="mobile-footer">
-       <MobileNav />
-      </div>
-    ) : (
+  
       <div className="footer flex desktop">
         <Container>
           <Row className="footer-top flex">
@@ -34,7 +29,7 @@ const Footer = () => {
              <p>Who Invent What</p>
             </Col>
             <Col className="contact flex">
-            <p>Developed By:<span className="comp"> <a href="https://van.nextlinegh.com" target="_blank"> Van Kelvin</a></span></p>
+            <p>Devoped By:<span className="comp"> <a href="https://van.nextlinegh.com" target="_blank"> Van Kelvin</a></span></p>
             </Col>
             <Col className="contact flex">
            <p>&copy; {currentYear}, All right reserved</p>
@@ -42,8 +37,6 @@ const Footer = () => {
           </Row>
         </Container>
       </div>
-    )}
-    </div>
   );
 };
 

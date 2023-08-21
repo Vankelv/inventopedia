@@ -342,9 +342,14 @@ hr.solid {
 }
 .ltIn .card{
   height: 400px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
+.loading-container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Make it full height of the viewport */
+}
 
 /* MOBILE */
 
@@ -360,10 +365,13 @@ hr.solid {
     display: none;
   }
   .read_more {
-    width: 50%;
+    width: 80%;
   }
   .desktop-nav {
     display: none;
+  }
+  .footer{
+    display: none !important;
   }
   #footer {
     padding-top: 20%;
@@ -499,4 +507,13 @@ hr.solid {
 .ltIn .inventview{
   color: #ffffff;
   background: #725be7
+}
+#coming_soon .btn_contained{
+  background: #725be7;
+  border: none;
+  box-shadow: none;
+}
+#coming_soon .btn_outline{
+  border: 1px solid white;
+  color: white;
 }

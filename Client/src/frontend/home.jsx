@@ -11,7 +11,7 @@ function Home() {
   const [searchInfo, setSearchInfo] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [latestInventions, setLatestInventions] = useState([]);
-  
+
   const apiUrl = "https://who-invent-what-81au.vercel.app";
 
   const handleSearch = (e) => {
@@ -19,8 +19,6 @@ function Home() {
     if (search === "") return;
 
     const searchKeywords = search.toLowerCase().split(" "); // Split search into keywords
-   
-    
 
     fetch(`${apiUrl}/inventions?search=${search}`)
       .then((response) => {
@@ -53,7 +51,7 @@ function Home() {
         setSearchPerformed(true);
       })
       .catch((error) => {
-        console.error("Error fetching search results:", error);
+        // console.error("Error fetching search results:", error);
       });
   };
   // LATEST INVENTIONS
@@ -61,25 +59,31 @@ function Home() {
     fetch(`${apiUrl}/inventionsByYear?year=2015&limit=3`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched latest inventions:", data);
+        // console.log("Fetched latest inventions:", data);
         setLatestInventions(data);
-        console.log("latestInventions state after setting:", latestInventions);
+        // console.log("latestInventions state after setting:", latestInventions);
       })
       .catch((error) => {
         console.error("Error fetching latest inventions:", error);
       });
   }, []);
-  
-  
+
   return (
     <div>
       <Navbar />
       <div className="section">
-        <h2>Search for your favourite Inventions </h2>
-       <p style={{
-        marginTop: "-20px"
-       }}>Discover the world of inventions and who is behind them and their creation date</p>
-        
+        <h2 style={{ padding: "20px" }}>
+          Search for your favourite Inventions{" "}
+        </h2>
+        <p
+          style={{
+            marginTop: "-20px",
+          }}
+        >
+          Discover the world of inventions and who is behind them and their
+          creation date
+        </p>
+
         <form className="search-container flex" onSubmit={handleSearch}>
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
           <input

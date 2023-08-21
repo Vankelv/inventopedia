@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./frontend/home";
@@ -10,7 +10,22 @@ import SignUp from "./frontend/signup";
 import SignIn from "./frontend/signin";
 import Footer from "./frontend/ui/components/footer";
 import InventionCategories from "./frontend/InventionCategories";
+import MobileNav from "./frontend/ui/components/mobileNav";
+import Blog from "./frontend/Blog";
 function App() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 768);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <div className="App">
       <Router>
@@ -23,9 +38,12 @@ function App() {
           <Route path="/categories" element={<InventionCategories />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
+          <Route path="/blog" element={< Blog/>} />
         </Routes>
+        {isMobile && <MobileNav />}
+        <Footer />
       </Router>
-      <Footer />
+    
     </div>
   );
 }

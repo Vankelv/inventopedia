@@ -56,7 +56,7 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch(`${apiUrl}/inventionsByYear?year=2015&limit=3`)
+    fetch(`${apiUrl}/inventionsByYear?year=2015&limit=4`)
       .then((response) => response.json())
       .then((data) => {
         // console.log("Fetched latest inventions:", data);
@@ -113,8 +113,8 @@ function Home() {
               }`}
             >
               {results.map((result, i) => (
-                <div className="result" key={i}>
-                  <div className="details">
+                <div className="row result" key={i}>
+                  <div className="col details">
                     <img
                       className="invention_img"
                       src={inventionImage}

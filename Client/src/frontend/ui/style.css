@@ -9,7 +9,14 @@
   --body_background: rgb(24, 24, 24);
   --link_color: rgb(248, 4, 73);
   --body_color: white;
+  .account h1{
+    color: #621FF1 !important;
+  }
+  .account p{
+    color: #292929;
+  }
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -23,6 +30,10 @@
 }
 .centered-div a {
   color: #ffffff;
+}
+.desktop-nav .nav-items{
+  display: flex;
+  gap: 22px;
 }
 .result-container {
   width: auto;
@@ -46,7 +57,7 @@
   border-radius: 10px;
   color: rgb(43, 42, 42);
   padding: 20px;
-  width: calc(100% / 3);
+  width: calc(100% / 5);
   box-sizing: border-box;
 }
 .one-result {
@@ -56,8 +67,8 @@
 
 .centered-div {
   justify-content: space-between;
-  background: #725be7;
-  width: 49%;
+  background: #621FF1;
+  width: 70%;
   padding: 26px;
   border-radius: 23px;
   margin-top: 19px;
@@ -116,12 +127,12 @@
   padding-top: 10%;
 }
 .search-icon {
-  color: #725be7;
+  color: #621FF1;
   font-size: 23px;
 }
 .search-button {
   border: none;
-  background: #725be7;
+  background: #621FF1;
   color: white;
   padding: 15px;
   border-radius: 8px 8px 0px;
@@ -164,7 +175,7 @@
 .read_more {
   border: 0px;
   margin-bottom: 37px;
-  background: #725be7;
+  background: #621FF1;
   color: white;
   padding: 12px;
   border-radius: 5px;
@@ -201,6 +212,7 @@
 .card .details {
   color: #292929;
   margin-left: 15px;
+  text-align: left;
 }
 .results {
   display: flex;
@@ -243,7 +255,7 @@ hr.solid {
   overflow: hidden;
 }
 .resultcount {
-  background: #725be7;
+  background: #621FF1;
   padding: 14px;
   border-radius: 5px;
   margin-top: 60px;
@@ -274,7 +286,6 @@ hr.solid {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: white;
   border-radius: 10px;
   margin: 20px;
 }
@@ -381,7 +392,7 @@ hr.solid {
   }
   .centered-div {
     justify-content: space-between;
-    background: #725be7;
+    background: #621FF1;
     width: 100%;
     padding: 10px;
     border-radius: 0px;
@@ -397,11 +408,7 @@ hr.solid {
     padding: 10px;
     box-sizing: border-box;
   }
-  .contact {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1px;
-  }
+ 
   .search-container {
     align-items: center;
     justify-content: space-between;
@@ -423,7 +430,15 @@ hr.solid {
 .contact {
   flex-direction: row;
   align-items: flex-start;
-  gap: 1px;
+  gap: 41px;
+}
+.footer .row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer .container{
+  display: initial;
 }
 .footer-top {
   gap: 50px;
@@ -483,7 +498,7 @@ hr.solid {
 .farrow {
   font-size: 30px;
   font-weight: 300;
-  color: #725be7;
+  color: #621FF1;
 }
 @media (max-width: 768px) {
   .category {
@@ -506,10 +521,10 @@ hr.solid {
 }
 .ltIn .inventview{
   color: #ffffff;
-  background: #725be7
+  background: #621FF1;
 }
 #coming_soon .btn_contained{
-  background: #725be7;
+  background: #621FF1;
   border: none;
   box-shadow: none;
 }

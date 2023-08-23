@@ -59,7 +59,6 @@ const SignIn = () => {
       <div className="first-side"></div>
       <div className="account">
         <div className="form">
-          {" "}
           <h1>SignIn</h1>
           <form onSubmit={handleSubmit}>
             <div className="fields">

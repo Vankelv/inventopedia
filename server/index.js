@@ -22,7 +22,7 @@ const Db_pass = encodeURIComponent("0546Van");
 const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
-let db; // Reference to the MongoDB database
+let db; // Reference to the MongoDB database //
 
 async function connect() {
   db = client.db("Whoinventwhat");

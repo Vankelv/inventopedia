@@ -82,6 +82,7 @@ const InventList = () => {
       ),
     },
   ];
+  //
   const handleDelete = (id) => {
     fetch(`https://who-invent-what-81au.vercel.app/inventions/${id}`, {
       method: "DELETE",

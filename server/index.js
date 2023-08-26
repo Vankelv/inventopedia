@@ -122,7 +122,7 @@ app.put("/inventions/:id", async (req, res) => {
 
   try {
     const result = await db.collection("inventions").updateOne(
-      { _id: ObjectId(inventionId) },
+      { _id: ObjectId(inventionId) }, // Use 'ObjectId' correctly
       {
         $set: {
           inventionName,
@@ -144,6 +144,7 @@ app.put("/inventions/:id", async (req, res) => {
     return res.status(500).json({ error: "Failed to update invention" });
   }
 });
+
 
 app.delete("/inventions/:id", async (req, res) => {
   const inventionId = req.params.id;

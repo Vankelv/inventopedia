@@ -86,16 +86,21 @@ const InventList = () => {
     fetch(`https://who-invent-what-81au.vercel.app/inventions/${id}`, {
       method: "DELETE",
     })
-    .then((response) => response.json()) // Use response.json() here
-    .then((data) => {
-      setInventions((prevInventions) =>
-        prevInventions.filter((invention) => invention.id !== id)
-      );
-    })
-    .catch((error) => {
-      console.error("Error deleting invention:", error);
-    });
-  }
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to delete invention, status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setInventions((prevInventions) =>
+          prevInventions.filter((invention) => invention.id !== id)
+        );
+      })
+      .catch((error) => {
+        console.error("Error deleting invention:", error);
+      });
+  };
   
   return (
     <div>

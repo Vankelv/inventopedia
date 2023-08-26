@@ -1,8 +1,8 @@
+require("dotenv").config();
 const { MongoClient, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-require("dotenv").config();
 
 const corsOptions = {
   origin: ["https://who-invent-what.vercel.app", "http://172.20.10.5:5173"],
@@ -15,11 +15,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 const DB_User = encodeURIComponent(process.env.DB_USER);
 const Db_pass = encodeURIComponent(process.env.DB_PASS);
-const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri);
 
-let db; // Reference to the MongoDB database 
+let db; 
 
 async function connect() {
   db = client.db("Whoinventwhat");

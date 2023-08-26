@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./components/sideBar";
 import RightBar from "./components/rightBar";
-import { Table } from "antd";
+import { Table, Button, Popconfirm, Space } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+
 
 const InventList = () => {
   // GREETINGS
@@ -58,8 +60,43 @@ const InventList = () => {
       title: "Country",
       dataIndex: "country",
     },
+    {
+      title: "Actions",
+      dataIndex: "actions",
+      render: (_, record) => (
+        <Space size="middle">
+          <Popconfirm
+          title="Are you sure you want to delete this invention?"
+          onConfirm={() => handleDelete(record.id)} 
+          okText="Yes"
+          cancelText="No"
+           >
+            <Button type="danger" icon={<DeleteOutlined/>} size="small">Delete</Button>
+           </Popconfirm>
+           <Link to={`/Edit-invention/${record.id}`}>
+          <Button type="primary" icon={<EditOutlined />} size="small">
+            Edit
+          </Button>
+        </Link>
+        </Space>
+      ),
+    },
   ];
-
+  const handleDelete = (id) => {
+    fetch(`https://who-invent-what-81au.vercel.app/inventions/${id}`, {
+      method: "DELETE",
+    })
+    .then((response) => response.json()) // Use response.json() here
+    .then((data) => {
+      setInventions((prevInventions) =>
+        prevInventions.filter((invention) => invention.id !== id)
+      );
+    })
+    .catch((error) => {
+      console.error("Error deleting invention:", error);
+    });
+  }
+  
   return (
     <div>
       <div className="main flex">

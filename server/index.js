@@ -4,12 +4,13 @@ const cors = require("cors");
 
 const app = express();
 const corsOptions = {
-  origin: "https://who-invent-what.vercel.app",
-  methods: ["GET", "POST"],
+  origin: ["https://who-invent-what.vercel.app", "http://172.20.10.5:5173"],
+  methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use(cors(corsOptions));
@@ -112,7 +113,39 @@ app.post("/inventions", async (req, res) => {
   }
 });
 
+//Invention actions. Delete and Edit
+app.put("/inventions/:id", async (req, res) => {
+  const inventionId = req.params.id;
+  const { inventionName, inventor, year, category, country } = req.body;
+
+  try {
+    const result = await db.collection("inventions").updateOne(
+      { _id: ObjectId(inventionId) },
+      {
+        $set: {
+          inventionName,
+          inventor,
+          year,
+          category,
+          country,
+        },
+      }
+    );
+
+    if (result.matchedCount === 1) {
+      return res.json({ message: "Invention updated successfully" });
+    } else {
+      return res.status(404).json({ error: "Invention not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Failed to update invention" });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+

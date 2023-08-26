@@ -15,7 +15,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 const DB_User = encodeURIComponent(process.env.DB_USER);
 const Db_pass = encodeURIComponent(process.env.DB_PASS);
-const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri);
 

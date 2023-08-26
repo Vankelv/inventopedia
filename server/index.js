@@ -3,15 +3,6 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const corsOptions = {
-<<<<<<< Updated upstream
-  origin: 'https://who-invent-what.vercel.app',
-=======
-  origin: 'http://localhost:5173/',
->>>>>>> Stashed changes
-  methods: ['GET', 'POST'],
-  credentials: true,
-};
 
 app.use(cors(corsOptions));
 app.use(express.json());

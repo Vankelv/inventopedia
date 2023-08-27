@@ -119,7 +119,7 @@ app.put("/inventions/:id", async (req, res) => {
 
   try {
     const result = await db.collection("inventions").updateOne(
-      { _id: ObjectId(inventionId) }, // Use 'ObjectId' correctly
+      { id: ObjectId(inventionId) }, // Use 'ObjectId' correctly
       {
         $set: {
           inventionName,
@@ -148,7 +148,7 @@ app.put("/inventions/:id", async (req, res) => {
 //   try {
 //     const result = await db
 //       .collection("inventions")
-//       .deleteOne({ _id: ObjectId(inventionId) });
+//       .deleteOne({ id: ObjectId(inventionId) });
 
 //     if (result.deletedCount === 1) {
 //       return res.json({ message: "Invention deleted successfully" });
@@ -161,10 +161,10 @@ app.put("/inventions/:id", async (req, res) => {
 //   }
 // });
 
-app.delete('/inventions/:_id', (req, res) => {
-  if(ObjectId.isValid(re.params._id)){
+app.delete('/inventions/:id', (req, res) => {
+  if(ObjectId.isValid(re.params.id)){
     db.collection('inventions')
-    .deleteOne({_id: ObjectId(req.params._id)})
+    .deleteOne({id: ObjectId(req.params.id)})
     .then(result=> {
       res.status(200).json(result)
     })

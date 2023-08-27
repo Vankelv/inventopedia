@@ -13,8 +13,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
-const DB_USER = encodeURIComponent(process.env.Db_User);
-const DB_PASS = encodeURIComponent(process.env.Db_Pass);
+const DB_USER = encodeURIComponent("vankelvin603");
+const DB_PASS = encodeURIComponent("0546Van");
 const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri);

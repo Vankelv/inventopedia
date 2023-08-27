@@ -161,10 +161,10 @@ app.put("/inventions/:id", async (req, res) => {
 //   }
 // });
 
-app.delete('/inventions/:id', (req, res) => {
-  if(ObjectId.isValid(re.params.id)){
+app.delete('/inventions/:_id', (req, res) => {
+  if(ObjectId.isValid(re.params._id)){
     db.collection('inventions')
-    .deleteOne({_id: ObjectId(req.params.id)})
+    .deleteOne({_id: ObjectId(req.params._id)})
     .then(result=> {
       res.status(200).json(result)
     })

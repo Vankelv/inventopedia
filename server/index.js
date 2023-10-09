@@ -142,21 +142,24 @@ app.put("/inventions/:id", async (req, res) => {
   }
 });
 
-app.delete('/inventions/:id', (req, res) => {
-  if(ObjectId.isValid(re.params.id)){
-    db.collection('inventions')
-    .deleteOne({id: ObjectId(req.params.id)})
-    .then(result=> {
-      res.status(200).json(result)
-    })
-    .catch(err => {
-      res.status(500).json({error: 'Could not delete the invention'})
-    })
-  }
-  else {
-    res.status(500).json({error: 'Not a valid inventions id'})
-  }
-})
+// app.delete('/inventions/:id', (req, res) => {
+//   if(ObjectId.isValid(re.params.id)){
+//     db.collection('inventions')
+//     .deleteOne({id: ObjectId(req.params.id)})
+//     .then(result=> {
+//       res.status(200).json(result)
+//     })
+//     .catch(err => {
+//       res.status(500).json({error: 'Could not delete the invention'})
+//     })
+//   }
+//   else {
+//     res.status(500).json({error: 'Not a valid inventions id'})
+//   }
+// })
+
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

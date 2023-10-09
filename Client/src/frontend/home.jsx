@@ -134,6 +134,7 @@ function Home() {
                       <strong>Year: </strong>
                       {result.year}
                     </p>
+                    <button className="inventview">View</button>
                   </div>
                 </div>
               ))}

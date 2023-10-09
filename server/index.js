@@ -22,15 +22,15 @@ const client = new MongoClient(uri);
 let db; 
 
 async function connect() {
-  db = client.db("Whoinventwhat");
   try {
-    await client.connect(uri);
-    console.log("Connected to MongoDb");
+    await client.connect(); // Open the connection
+    db = client.db("Whoinventwhat");
+    console.log("Connected to MongoDB");
   } catch (error) {
     console.error(error);
   }
 }
-connect();
+
 
 app.get("/", (req, res) => {
   return res.json({ message: "From server side" });
@@ -177,3 +177,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

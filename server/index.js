@@ -142,25 +142,6 @@ app.put("/inventions/:id", async (req, res) => {
   }
 });
 
-// app.delete("/inventions/:id", async (req, res) => {
-//   const inventionId = req.params.id;
-
-//   try {
-//     const result = await db
-//       .collection("inventions")
-//       .deleteOne({ id: ObjectId(inventionId) });
-
-//     if (result.deletedCount === 1) {
-//       return res.json({ message: "Invention deleted successfully" });
-//     } else {
-//       return res.status(404).json({ error: "Invention not found" });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     return res.status(500).json({ error: "Failed to delete invention" });
-//   }
-// });
-
 app.delete('/inventions/:id', (req, res) => {
   if(ObjectId.isValid(re.params.id)){
     db.collection('inventions')

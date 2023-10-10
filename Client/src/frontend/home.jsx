@@ -4,8 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import inventionImage from "./ui/portada.png";
 import Navbar from "./ui/components/navbar";
+import {useLocation } from "react-router-dom";
 
 function Home() {
+  const location = useLocation();
+  useEffect(() => {
+    document.title = "Home | Inventopedia ";
+  }, [location]);
+
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [searchInfo, setSearchInfo] = useState([]);

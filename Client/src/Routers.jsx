@@ -12,6 +12,7 @@ import Footer from "./frontend/ui/components/footer";
 import InventionCategories from "./frontend/InventionCategories";
 import MobileNav from "./frontend/ui/components/mobileNav";
 import Blog from "./frontend/Blog";
+import CategoryArchive from "./frontend/ui/pages/ CategoryArchive";
 function Routers() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -39,6 +40,8 @@ function Routers() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/blog" element={< Blog/>} />
+          <Route path="/categories/:category" element={<CategoryArchive/>} />
+
         </Routes>
         {isMobile && <MobileNav />}
         <Footer />

@@ -532,3 +532,8 @@ hr.solid {
   border: 1px solid white;
   color: white;
 }
+.cat-items{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}

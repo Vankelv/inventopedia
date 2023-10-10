@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import "./ui/style.css";
 import Stack from "@mui/material/Stack";
+import "../style.css";
 import Button from "@mui/material/Button";
 import { useLocation } from "react-router-dom";
 

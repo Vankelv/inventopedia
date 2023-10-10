@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./ui/components/navbar";
+import Navbar from "../components/navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -63,7 +63,7 @@ const InventionCategories = () => {
                 alt="computer"
                 style={{ maxWidth: "100px" }}
               />
-              <h5 className="catname">Agriculture</h5> 
+              <h5 className="catname">Agriculture</h5>
               <div className="count flex">
                 <div>
                   <FontAwesomeIcon icon={faArrowRight} className="farrow" />
@@ -73,13 +73,13 @@ const InventionCategories = () => {
           </div>
 
           <div className="col card">
-            <Link to="/categories/Science"  className="cat-items">
+            <Link to="/categories/Science" className="cat-items">
               <img
                 src="/imgs/categories/atom.png"
                 alt="computer"
                 style={{ maxWidth: "100px" }}
               />
-              <h5 className="catname">Science</h5> 
+              <h5 className="catname">Science</h5>
               <div className="count flex">
                 <div>
                   <FontAwesomeIcon icon={faArrowRight} className="farrow" />

@@ -194,7 +194,9 @@
   object-fit: cover;
   position: relative;
 }
-
+.ant-pagination{
+  justify-content: center;
+}
 .cards .ant-card-body {
   background: #dfdbdb;
   text-align: left;

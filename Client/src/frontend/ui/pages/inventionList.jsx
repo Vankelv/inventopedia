@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import Navbar from "../components/navbar";
+import "../style.css";
 import { Card, Pagination, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import inventionImage from "../portada.png";
+import Navbar from "../components/navbar";
+import inventionImage from "../imgs/portada.png";
+import { useLocation } from "react-router-dom";
 
-const CategoryArchive = () => {
+const InventionList = () => {
   const location = useLocation();
   useEffect(() => {
-    document.title = `${category} | Inventopedia`;
+    document.title = "Inventions | Inventopedia";
   }, [location]);
-  const { category } = useParams();
+
   const [inventions, setInventions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [rows, setRows] = useState([]); // Define rows state
   const itemsPerPage = 6; // Number of items to display per page
   const cardsPerRow = 3;
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     setLoading(true);
 
     setTimeout(() => {
-      fetch(
-        `https://who-invent-what-81au.vercel.app/inventions/category/${category}`
-      )
+      fetch("https://who-invent-what-81au.vercel.app/inventions")
         .then((res) => res.json())
         .then((data) => {
+          // console.log("Fetched data:", data); // Debugging log
           setInventions(data);
           const startIndex = (currentPage - 1) * itemsPerPage;
           const endIndex = startIndex + itemsPerPage;
 
+          // Get the sliced array of inventions based on the current page
           if (Array.isArray(data)) {
             const paginatedInventions = data.slice(startIndex, endIndex);
             const newRows = [];
@@ -55,7 +55,6 @@ const CategoryArchive = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
   return (
     <div>
       <Navbar />
@@ -108,4 +107,4 @@ const CategoryArchive = () => {
   );
 };
 
-export default CategoryArchive;
+export default InventionList;

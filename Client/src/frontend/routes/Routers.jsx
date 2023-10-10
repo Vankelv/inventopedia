@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import "./App.css";
-import Home from "./frontend/home";
-import Invention from "./frontend/inventionList";
-import Dashboard from "./Dashboard/dashboard";
-import AddInvention from "./Dashboard/addInvention";
-import InventList from "./Dashboard/inventList";
-import SignUp from "./frontend/signup";
-import SignIn from "./frontend/signin";
-import Footer from "./frontend/ui/components/footer";
-import InventionCategories from "./frontend/InventionCategories";
-import MobileNav from "./frontend/ui/components/mobileNav";
-import Blog from "./frontend/Blog";
-import CategoryArchive from "./frontend/ui/pages/ CategoryArchive";
+import Home from "../ui/pages/home";
+import Invention from "../ui/pages/inventionList";
+import Dashboard from "../../Dashboard/dashboard";
+import AddInvention from "../../Dashboard/addInvention";
+import InventList from "../../Dashboard/inventList";
+import SignUp from "../auth/signup";
+import SignIn from "../auth/signin";
+import Footer from "../ui/components/footer";
+import InventionCategories from "../ui/pages/InventionCategories";
+import MobileNav from "../ui/components/mobileNav";
+import Blog from "../ui/pages/Blog";
+import CategoryArchive from "../ui/pages/CategoryArchive";
 function Routers() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -39,14 +38,12 @@ function Routers() {
           <Route path="/categories" element={<InventionCategories />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
-          <Route path="/blog" element={< Blog/>} />
-          <Route path="/categories/:category" element={<CategoryArchive/>} />
-
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/categories/:category" element={<CategoryArchive />} />
         </Routes>
         {isMobile && <MobileNav />}
         <Footer />
       </Router>
-    
     </div>
   );
 }

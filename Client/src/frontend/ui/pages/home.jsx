@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./ui/style.css";
+import "../style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import inventionImage from "./ui/portada.png";
-import Navbar from "./ui/components/navbar";
-import {useLocation } from "react-router-dom";
+import inventionImage from "../imgs/portada.png";
+import Navbar from "../components/navbar";
+import { useLocation } from "react-router-dom";
 
 function Home() {
   const location = useLocation();

@@ -159,7 +159,7 @@ app.get('/inventions/category/:category', (req, res) => {
 
 
 app.delete('/inventions/:id', (req, res) => {
-  if(ObjectId.isValid(re.params.id)){
+  if(ObjectId.isValid(res.params.id)){
     db.collection('inventions')
     .deleteOne({id: ObjectId(req.params.id)})
     .then(result=> {
@@ -173,6 +173,7 @@ app.delete('/inventions/:id', (req, res) => {
     res.status(500).json({error: 'Not a valid inventions id'})
   }
 })
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

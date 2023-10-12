@@ -67,13 +67,13 @@ const InventList = () => {
         <Space size="middle">
           <Popconfirm
           title="Are you sure you want to delete this invention?"
-          onConfirm={() => handleDelete(record.id)} 
+          onConfirm={() => handleDelete(record._id)} 
           okText="Yes"
           cancelText="No"
            >
             <Button type="danger" icon={<DeleteOutlined/>} size="small">Delete</Button>
            </Popconfirm>
-           <Link to={`/Edit-invention/${record.id}`}>
+           <Link to={`/Edit-invention/${record._id}`}>
           <Button type="primary" icon={<EditOutlined />} size="small">
             Edit
           </Button>
@@ -102,6 +102,7 @@ const InventList = () => {
         console.error("Error deleting invention:", error);
       });
   };
+  
   
   return (
     <div>

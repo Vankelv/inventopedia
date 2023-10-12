@@ -83,8 +83,8 @@ const InventList = () => {
     },
   ];
   //
-  const handleDelete = (_id) => {
-    fetch(`https://who-invent-what-81au.vercel.app/inventions/${_id}`, {
+  const handleDelete = (id) => {
+    fetch(`https://who-invent-what-81au.vercel.app/inventions/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -95,7 +95,7 @@ const InventList = () => {
       })
       .then((data) => {
         setInventions((prevInventions) =>
-          prevInventions.filter((invention) => invention._id !== _id)
+          prevInventions.filter((invention) => invention.id !== id)
         );
       })
       .catch((error) => {

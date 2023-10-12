@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: ["https://who-invent-what.vercel.app", "http://172.20.10.5:5173"],
+  origin: ["https://who-invent-what.vercel.app", "http://172.20.10.4:5173"],
   methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
   credentials: true,
 };
@@ -157,10 +157,10 @@ app.get('/inventions/category/:category', (req, res) => {
     });
 });
 
-app.delete('/inventions/:id', (req, res) => {
-  if (ObjectId.isValid(req.params.id)) {
+app.delete('/inventions/:_id', (req, res) => {
+  if (ObjectId.isValid(req.params._id)) {
     db.collection('inventions')
-      .deleteOne({ _id: ObjectId(req.params.id) }) // Use _id for identification
+      .deleteOne({ _id: ObjectId(req.params._id) })
       .then(result => {
         res.status(200).json(result);
       })
@@ -168,9 +168,10 @@ app.delete('/inventions/:id', (req, res) => {
         res.status(500).json({ error: 'Could not delete the invention' });
       });
   } else {
-    res.status(500).json({ error: 'Not a valid inventions id' });
+    res.status(500).json({ error: 'Not a valid inventions _id' });
   }
 });
+
 
 
 const PORT = process.env.PORT || 3000;

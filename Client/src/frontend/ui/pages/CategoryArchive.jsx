@@ -96,13 +96,15 @@ const CategoryArchive = () => {
             ))}
           </div>
         </Spin>
-        <Pagination
-          current={currentPage}
-          pageSize={itemsPerPage}
-          total={inventions.length}
-          onChange={handlePageChange}
-          className="pagination"
-        />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Pagination
+            current={currentPage}
+            pageSize={itemsPerPage}
+            total={inventions.length}
+            onChange={handlePageChange}
+            className="pagination"
+          />
+        </div>
       </div>
     </div>
   );

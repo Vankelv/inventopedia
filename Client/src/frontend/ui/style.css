@@ -389,8 +389,10 @@ hr.solid {
   #footer {
     padding-top: 20%;
   }
-  .pagination {
+  .pagination  {
+    display: flex !important;
     margin-top: 50px;
+    justify-content: center !important;
   }
   .centered-div {
     justify-content: space-between;

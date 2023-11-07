@@ -95,7 +95,6 @@ const InventionList = () => {
             ))}
           </div>
         </Spin>
-        <div  style={{ display: 'flex', justifyContent: 'center'}}>
         <Pagination
           current={currentPage}
           pageSize={itemsPerPage}
@@ -103,7 +102,6 @@ const InventionList = () => {
           onChange={handlePageChange}
           className="pagination"
         />
-        </div>
       </div>
     </div>
   );

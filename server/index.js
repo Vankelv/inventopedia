@@ -1,22 +1,24 @@
 const { MongoClient, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
-const app = express();
-require("dotenv").config();
 
+const app = express();
 const corsOptions = {
   origin: ["https://who-invent-what.vercel.app", "http://172.20.10.5:5173"],
-  methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+  methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 
 app.use(express.json());
-const DB_User = encodeURIComponent(process.env.DB_USER);
-const Db_pass = encodeURIComponent(process.env.DB_PASS);
-const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 
+app.use(cors(corsOptions));
+app.use(express.json());
+
+const DB_User = encodeURIComponent("vankelvin603");
+const Db_pass = encodeURIComponent("0546Van");
+const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
 let db; // Reference to the MongoDB database //
@@ -142,41 +144,30 @@ app.put("/inventions/:id", async (req, res) => {
   }
 });
 
-// app.delete("/inventions/:id", async (req, res) => {
-//   const inventionId = req.params.id;
 
-//   try {
-//     const result = await db
-//       .collection("inventions")
-//       .deleteOne({ _id: ObjectId(inventionId) });
+app.delete("/inventions/:id", async (req, res) => {
+  const inventionId = req.params.id;
 
-//     if (result.deletedCount === 1) {
-//       return res.json({ message: "Invention deleted successfully" });
-//     } else {
-//       return res.status(404).json({ error: "Invention not found" });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     return res.status(500).json({ error: "Failed to delete invention" });
-//   }
-// });
+  try {
+    const result = await db
+      .collection("inventions")
+      .deleteOne({ _id: ObjectId(inventionId) });
 
-app.delete('/inventions/:id', (req, res) => {
-  if(ObjectId.isValid(re.params.id)){
-    db.collection('inventions')
-    .deleteOne({_id: ObjectId(req.params.id)})
-    .then(result=> {
-      res.status(200).json(result)
-    })
-    .catch(err => {
-      res.status(500).json({error: 'Could not delete the invention'})
-    })
+    if (result.deletedCount === 1) {
+      return res.json({ message: "Invention deleted successfully" });
+    } else {
+      return res.status(404).json({ error: "Invention not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Failed to delete invention" });
   }
-  else {
-    res.status(500).json({error: 'Not a valid inventions id'})
-  }
-})
+});
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+

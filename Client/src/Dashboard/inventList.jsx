@@ -34,7 +34,7 @@ const InventList = () => {
   const columns = [
     {
       title: "ID",
-      dataIndex: "_id",
+      dataIndex: "id",
     },
     {
       title: "Invention Name",

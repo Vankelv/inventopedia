@@ -4,20 +4,13 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-// const corsOptions = {
-//   origin: ["https://who-invent-what-vankelv.vercel.app", "http://172.20.10.5:5173"],
-//   methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
-//   credentials: true,
-// };
-app.use(
-  cors({
-    origin: "https://who-invent-what-vankelv.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["content-type"],
-  })
-);
+const corsOptions = {
+  origin: ["https://who-invent-what-vankelv.vercel.app", "http://172.20.10.5:5173"],
+  methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+  credentials: true,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(express.json());
 const DB_USER = process.env.DB_USER;

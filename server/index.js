@@ -175,7 +175,7 @@ app.delete('/inventions/:_id', (req, res) => {
         res.status(500).json({ error: 'Could not delete the invention' });
       });
   } else {
-    res.status(500).json({ error: 'Not a valid inventions id' });
+    res.status(500).json({ error: 'Not a valid inventions _id' });
   }
 });
 

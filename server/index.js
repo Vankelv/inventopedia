@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: ["https://who-invent-what.vercel.app", "http://172.20.10.5:5173"],
+  origin: ["https://who-invent-what-vankelv.vercel.app", "http://172.20.10.5:5173"],
   methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
   credentials: true,
 };

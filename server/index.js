@@ -1,25 +1,41 @@
-const { MongoClient, ObjectId } = require("mongodb");
+import express, { response } from "express";
+import { PORT, mongoDBURL } from "./config";
+import mongoose from "mongoose";
 const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const corsOptions = {
-  origin: ["https://who-invent-what-vankelv.vercel.app/", "http://172.20.10.5:5173"],
+// const corsOptions = {
+//   origin: ["https://who-invent-what-vankelv.vercel.app/", "http://172.20.10.5:5173"],
+//   methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
+//   credentials: true,
+// };
+
+
+app.use(cors({
+  origin: "https://who-invent-what-vankelv.vercel.app/", "http://localhost:5173",
   methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+  allowedHeaders: ["content-type"],
+})
+);
 
 app.use(express.json());
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
-const DB_User = encodeURIComponent("vankelvin603");
-const Db_pass = encodeURIComponent("0546Van");
-const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri);
+// const DB_User = encodeURIComponent("vankelvin603");
+// const Db_pass = encodeURIComponent("0546Van");
+// const uri = `mongodb+srv://${DB_User}:${Db_pass}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
+// const client = new MongoClient(uri);
+mongoose
+.connect(mongoDBURL)
+.then(() =>{
+  console.log("App connected to the database");
+  app.listen(PORT, () => {
+console.log(`App is listening to port: ${PORT}`);
+  })
+})
 
 let db; // Reference to the MongoDB database //
 
@@ -143,16 +159,3 @@ app.put("/inventions/:id", async (req, res) => {
     return res.status(500).json({ error: "Failed to update invention" });
   }
 });
-
-
-app.delete("/inventions/:id", async (req, res) => {
-  const inventionId = req.params.id;
-
-
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-

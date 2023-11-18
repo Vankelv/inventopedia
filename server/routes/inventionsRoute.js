@@ -1,7 +1,7 @@
-import { Express } from "express";
-import { Invention } from "../models/inventionsModel";
+import express from 'express';
+import { Invention } from "../models/inventionsModel.js";
 
-const router = Express.Router()
+const router = express.Router()
 
 
 router.get("/", (req, res) => {
@@ -60,7 +60,7 @@ router.get("/", (req, res) => {
     }
   });
 
-  app.post("/inventions", async (req, res) => {
+router.post("/inventions", async (req, res) => {
     const { inventionName, inventor, year, category, country } = req.body;
   
     try {
@@ -85,7 +85,7 @@ router.get("/", (req, res) => {
   
   //Invention actions. Delete and Edit
   
-  app.put("/inventions/:id", async (req, res) => {
+ router.put("/inventions/:id", async (req, res) => {
     const inventionId = req.params.id;
     const { inventionName, inventor, year, category, country } = req.body;
   

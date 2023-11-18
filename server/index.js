@@ -1,30 +1,25 @@
 import express, { response } from "express";
-import { PORT, mongoDBURL } from "./config";
+import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-import inventionsRoute from "./routes/inventionsRoute";
-const express = require("express");
-const cors = require("cors");
+import inventionsRoute from "./routes/inventionsRoute.js";
+import cors from "cors";
 
 const app = express();
-// const corsOptions = {
-//   origin: ["https://who-invent-what-vankelv.vercel.app/", "http://172.20.10.5:5173"],
-//   methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
-//   credentials: true,
-// };
 
+app.use(express.json());
 
 app.use(cors({
-  origin: "https://who-invent-what-vankelv.vercel.app/", "http://localhost:5173",
+  origin: "https://who-invent-what-vankelv.vercel.app/", 
   methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
   allowedHeaders: ["content-type"],
 })
 );
 
-app.use(express.json());
-
-app.use(cors(corsOptions));
-app.use(express.json());
-
+app.get("/", (request, response) => {
+  console.log(request);
+  return response.status(234).send("Welcome to Who Invent What");
+});
+app.use("/inventions", inventionsRoute)
 
 mongoose
 .connect(mongoDBURL)

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./ui/style.css";
+import "../style.css";
 import { Card, Pagination, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import Navbar from "./ui/components/navbar";
-import inventionImage from "./ui/portada.png";
+import Navbar from "../components/navbar";
+import inventionImage from "../imgs/portada.png";
+import { useLocation } from "react-router-dom";
 
 const InventionList = () => {
+  const location = useLocation();
+  useEffect(() => {
+    document.title = "Inventions | Inventopedia";
+  }, [location]);
+
   const [inventions, setInventions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [rows, setRows] = useState([]); // Define rows state
@@ -50,7 +56,7 @@ const InventionList = () => {
     setCurrentPage(page);
   };
   return (
-    <div >
+    <div>
       <Navbar />
       <div className="inventions">
         <Spin

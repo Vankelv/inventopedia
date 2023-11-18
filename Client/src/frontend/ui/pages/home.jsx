@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./ui/style.css";
+import "../style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import inventionImage from "./ui/portada.png";
-import Navbar from "./ui/components/navbar";
+import inventionImage from "../imgs/portada.png";
+import Navbar from "../components/navbar";
+import { useLocation } from "react-router-dom";
 
 function Home() {
+  const location = useLocation();
+  useEffect(() => {
+    document.title = "Home | Inventopedia ";
+  }, [location]);
+
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [searchInfo, setSearchInfo] = useState([]);
@@ -134,6 +140,7 @@ function Home() {
                       <strong>Year: </strong>
                       {result.year}
                     </p>
+                    <button className="inventview">View</button>
                   </div>
                 </div>
               ))}

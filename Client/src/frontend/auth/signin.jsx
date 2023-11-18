@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "./ui/style.css";
-import GoogleLogo from "./ui/gmail.png";
+import "../ui/style.css";
+import GoogleLogo from "../ui/imgs/gmail.png";
 
 const SignIn = () => {
   const navigate = useNavigate();

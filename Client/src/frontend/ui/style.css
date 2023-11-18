@@ -9,10 +9,10 @@
   --body_background: rgb(24, 24, 24);
   --link_color: rgb(248, 4, 73);
   --body_color: white;
-  .account h1{
-    color: #621FF1 !important;
+  .account h1 {
+    color: #621ff1 !important;
   }
-  .account p{
+  .account p {
     color: #292929;
   }
 }
@@ -31,7 +31,7 @@
 .centered-div a {
   color: #ffffff;
 }
-.desktop-nav .nav-items{
+.desktop-nav .nav-items {
   display: flex;
   gap: 22px;
 }
@@ -67,7 +67,7 @@
 
 .centered-div {
   justify-content: space-between;
-  background: #621FF1;
+  background: #621ff1;
   width: 70%;
   padding: 26px;
   border-radius: 23px;
@@ -127,12 +127,12 @@
   padding-top: 10%;
 }
 .search-icon {
-  color: #621FF1;
+  color: #621ff1;
   font-size: 23px;
 }
 .search-button {
   border: none;
-  background: #621FF1;
+  background: #621ff1;
   color: white;
   padding: 15px;
   border-radius: 8px 8px 0px;
@@ -147,7 +147,7 @@
   flex-wrap: wrap;
   gap: 20px;
 }
-.inventions #Card{
+.inventions #Card {
   height: 400px;
 }
 .home {
@@ -175,7 +175,7 @@
 .read_more {
   border: 0px;
   margin-bottom: 37px;
-  background: #621FF1;
+  background: #621ff1;
   color: white;
   padding: 12px;
   border-radius: 5px;
@@ -194,14 +194,17 @@
   object-fit: cover;
   position: relative;
 }
-
+.ant-pagination {
+  justify-content: center;
+  display: flex;
+}
 .cards .ant-card-body {
   background: #dfdbdb;
   text-align: left;
   height: 450px;
   padding-bottom: 20px;
 }
-.ant-card-body .invention_img{
+.ant-card-body .invention_img {
   top: 0;
   left: 0;
   width: 100%;
@@ -255,7 +258,7 @@ hr.solid {
   overflow: hidden;
 }
 .resultcount {
-  background: #621FF1;
+  background: #621ff1;
   padding: 14px;
   border-radius: 5px;
   margin-top: 60px;
@@ -351,7 +354,7 @@ hr.solid {
   align-items: center;
   justify-content: center;
 }
-.ltIn .card{
+.ltIn .card {
   height: 400px;
   padding-bottom: 40px;
 }
@@ -381,7 +384,7 @@ hr.solid {
   .desktop-nav {
     display: none;
   }
-  .footer{
+  .footer {
     display: none !important;
   }
   #footer {
@@ -392,7 +395,7 @@ hr.solid {
   }
   .centered-div {
     justify-content: space-between;
-    background: #621FF1;
+    background: #621ff1;
     width: 100%;
     padding: 10px;
     border-radius: 0px;
@@ -408,7 +411,7 @@ hr.solid {
     padding: 10px;
     box-sizing: border-box;
   }
- 
+
   .search-container {
     align-items: center;
     justify-content: space-between;
@@ -437,7 +440,7 @@ hr.solid {
   justify-content: space-around;
   align-items: center;
 }
-.footer .container{
+.footer .container {
   display: initial;
 }
 .footer-top {
@@ -455,19 +458,19 @@ hr.solid {
   margin: 10px;
   gap: 0px;
   align-items: center;
-  width: calc(33.33% - 20px); 
+  width: calc(33.33% - 20px);
   margin-bottom: 20px;
 }
 .category .count {
   align-items: center;
   justify-content: space-between;
 }
-.category .card:hover{
+.category .card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   transform: translateX(-10%);
   transition: transform 0.3s ease-in-out;
 }
-.category .card:focus-visible{
+.category .card:focus-visible {
   transform: translateX(0);
 }
 .category h5 {
@@ -488,7 +491,7 @@ hr.solid {
   padding: 11px;
   border-radius: 7px;
 }
-.category .row{
+.category .row {
   flex-wrap: wrap;
   width: 80%;
 }
@@ -498,7 +501,7 @@ hr.solid {
 .farrow {
   font-size: 30px;
   font-weight: 300;
-  color: #621FF1;
+  color: #621ff1;
 }
 @media (max-width: 768px) {
   .category {
@@ -512,23 +515,28 @@ hr.solid {
   }
   .category .card {
     line-height: 1.5;
-    width: 100%
+    width: 100%;
   }
-  .category .card:hover{
+  .category .card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: none;
   }
 }
-.ltIn .inventview{
+.ltIn .inventview {
   color: #ffffff;
-  background: #621FF1;
+  background: #621ff1;
 }
-#coming_soon .btn_contained{
-  background: #621FF1;
+#coming_soon .btn_contained {
+  background: #621ff1;
   border: none;
   box-shadow: none;
 }
-#coming_soon .btn_outline{
+#coming_soon .btn_outline {
   border: 1px solid white;
   color: white;
+}
+.cat-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

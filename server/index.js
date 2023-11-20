@@ -160,8 +160,14 @@ app.get('/inventions/category/:category', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 app.delete('/inventions/:_id', (req, res) => {
   if (ObjectId.isValid(req.params._id)) {
+=======
+
+app.delete('/inventions/:id', (req, res) => {
+  if(ObjectId.isValid(re.params.id)){
+>>>>>>> parent of 28f21ab (update)
     db.collection('inventions')
       .deleteOne({ _id: ObjectId(req.params._id) })
       .then(result => {
@@ -173,10 +179,17 @@ app.delete('/inventions/:_id', (req, res) => {
   } else {
     res.status(500).json({ error: 'Not a valid inventions _id' });
   }
+<<<<<<< HEAD
 });
 
 
 
+=======
+  else {
+    res.status(500).json({error: 'Not a valid inventions id'})
+  }
+})
+>>>>>>> parent of 28f21ab (update)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

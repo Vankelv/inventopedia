@@ -15,22 +15,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-// const DB_USER = process.env.DB_USER;
-// const DB_PASS = process.env.DB_PASS;
-// const uri = process.env.MONGO_URI;
->>>>>>> parent of f7b90a9 (update)
 const DB_USER = 'vankelvin603';
 const DB_PASS = '0546Van';
 const MONGO_URI = `mongodb+srv://${DB_USER}:${DB_PASS}@who-invent-what.wh0vdyz.mongodb.net/test?retryWrites=true&w=majority`;
-=======
-const DB_USER = encodeURIComponent("vankelvin603");
-const DB_PASS = encodeURIComponent("0546Van");
-const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@who-invent-what.wh0vdyz.mongodb.net/?retryWrites=true&w=majority`;
->>>>>>> parent of 61f9086 (update)
 
 const client = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 

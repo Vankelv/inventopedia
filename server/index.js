@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://who-invent-what-vankelv.vercel.app/", 
+  origin: "http://localhost:5173", 
   methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
   allowedHeaders: ["content-type"],
 })

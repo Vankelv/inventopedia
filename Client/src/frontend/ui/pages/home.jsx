@@ -18,7 +18,7 @@ function Home() {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [latestInventions, setLatestInventions] = useState([]);
 
-  const apiUrl = "https://who-invent-what-81au.vercel.app";
+  const apiUrl = "http://localhost:8080";
 
   const handleSearch = (e) => {
     e.preventDefault();

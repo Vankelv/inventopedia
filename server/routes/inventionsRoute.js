@@ -1,55 +1,47 @@
-import express from 'express';
+import express, { request, response } from 'express';
 import { Invention } from "../models/inventionsModel.js";
 
 const router = express.Router()
 
 
-router.get("/", (req, res) => {
-    return res.json({ message: "From server side" });
-  });
-  
-  router.get("/users", async (req, res) => {
-    try {
-      const users = await db.collection("users").find().toArray();
-      return res.json(users);
-    } catch (err) {
-      return res.status(500).json({ error: "Failed to fetch users" });
+  router.get("/", async (request, response) => {
+    try{
+      const inventions = await Invention.find({});
+      return response.status(200).json({
+        count: inventions.length,
+        data: inventions,
+      });
+    }
+    catch (error){
+      console.log(error.message);
+      response.status(500).send({ message: error.message})
     }
   });
-  
-  router.get("/categories", async (req, res) => {
-    try {
-      const categories = await db.collection("categories").find().toArray();
-      return res.json(categories);
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Failed to fetch categories" });
+
+  // GET inventions by ID
+  router.get("/:id", async (request, response) => {
+    try{
+      const  { id } = request.params;
+      const invention = await Invention.findById(id);
+
+      return response.status(200).json(invention);
     }
-  });
-  router.get("/inventions", async (req, res) => {
-    try {
-      const inventions = await db.collection("inventions").find().toArray();
-      res.set("Access-Control-Allow-Origin", "*"); // Change 'response' to 'res'
-      return res.json(inventions);
-    } catch (err) {
-      return res
-        .status(500)
-        .json({ error: "Failed to fetch inventions from MongoDB" });
+    catch (error){
+      console.log(error.message);
+      response.status(500).send({ message: error.message})
     }
-  });
+  })
   
   // LATEST INVENTIONS
   router.get("/inventionsByYear", async (req, res) => {
     const year = parseInt(req.query.year) || 2015;
-    const limit = parseInt(req.query.limit) || 10; // Default limit is set to 10, change as needed
+    const limit = parseInt(req.query.limit) || 10;
     res.set("Access-Control-Allow-Origin", "*");
   
     try {
-      const inventions = await db
-        .collection("inventions")
+      const inventions = await Invention
         .find({ year: { $gte: year } })
-        .limit(limit)
-        .toArray();
+        .limit(limit);
   
       return res.json(inventions);
     } catch (err) {

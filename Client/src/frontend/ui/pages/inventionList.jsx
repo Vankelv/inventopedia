@@ -22,15 +22,13 @@ const InventionList = () => {
     setLoading(true);
 
     setTimeout(() => {
-      fetch("https://who-invent-what-81au.vercel.app/inventions")
+      fetch("http://localhost:8080/invention")
         .then((res) => res.json())
         .then((data) => {
           // console.log("Fetched data:", data); // Debugging log
           setInventions(data);
           const startIndex = (currentPage - 1) * itemsPerPage;
           const endIndex = startIndex + itemsPerPage;
-
-          // Get the sliced array of inventions based on the current page
           if (Array.isArray(data)) {
             const paginatedInventions = data.slice(startIndex, endIndex);
             const newRows = [];

@@ -4,7 +4,7 @@ import { Invention } from "../models/inventionsModel.js";
 const router = express.Router()
 
 
-  router.get("/", async (request, response) => {
+  router.get("/Inventions", async (request, response) => {
     try{
       const inventions = await Invention.find({});
       return response.status(200).json({
@@ -19,7 +19,7 @@ const router = express.Router()
   });
 
   // GET inventions by ID
-  router.get("/:id", async (request, response) => {
+  router.get("/:_id", async (request, response) => {
     try{
       const  { id } = request.params;
       const invention = await Invention.findById(id);
@@ -52,11 +52,11 @@ const router = express.Router()
     }
   });
 
-router.post("/inventions", async (req, res) => {
+  router.post("/inventions", async (req, res) => {
     const { inventionName, inventor, year, category, country } = req.body;
   
     try {
-      const result = await db.collection("inventions").insertOne({
+      const newInvention = new Invention({
         inventionName,
         inventor,
         year,
@@ -64,7 +64,9 @@ router.post("/inventions", async (req, res) => {
         country,
       });
   
-      if (result.insertedCount === 1) {
+      const result = await newInvention.save();
+  
+      if (result) {
         return res.json({ message: "Invention data submitted successfully" });
       } else {
         return res.status(500).json({ error: "Failed to submit invention data" });
@@ -74,28 +76,22 @@ router.post("/inventions", async (req, res) => {
       return res.status(500).json({ error: "Failed to submit invention data" });
     }
   });
-  
   //Invention actions. Delete and Edit
   
- router.put("/inventions/:id", async (req, res) => {
+  router.put("/inventions/:id", async (req, res) => {
     const inventionId = req.params.id;
     const { inventionName, inventor, year, category, country } = req.body;
   
     try {
-      const result = await db.collection("inventions").updateOne(
-        { _id: ObjectId(inventionId) }, // Use 'ObjectId' correctly
-        {
-          $set: {
-            inventionName,
-            inventor,
-            year,
-            category,
-            country,
-          },
-        }
-      );
+      const result = await Invention.findByIdAndUpdate(inventionId, {
+        inventionName,
+        inventor,
+        year,
+        category,
+        country,
+      });
   
-      if (result.matchedCount === 1) {
+      if (result) {
         return res.json({ message: "Invention updated successfully" });
       } else {
         return res.status(404).json({ error: "Invention not found" });

@@ -1,4 +1,3 @@
 export const PORT = 8080;
 
-export const mongoDBURL =
-  "mongodb+srv://vankelvin603:0546Van@who-invent-what.wh0vdyz.mongodb.net/";
+export const mongoDBURL = 'mongodb+srv://Van:0546Van@inventopeadia.zn6rs2o.mongodb.net/?retryWrites=true&w=majority';

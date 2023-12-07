@@ -1,7 +1,7 @@
 import express, { response } from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-import inventionsRoute from "./routes/inventionsRoute.js";
+import inventionRoutes from "./routes/invention.js";
 import cors from "cors";
 
 const app = express();
@@ -19,7 +19,7 @@ app.get("/", (request, response) => {
   console.log(request);
   return response.status(234).send("Welcome to Who Invent What");
 });
-app.use("/inventions", inventionsRoute)
+app.use("/inventions", inventionRoutes)
 
 mongoose
 .connect(mongoDBURL)

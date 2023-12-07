@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const inventionSchema = mongoose.Schema({
+const inventionSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
@@ -22,4 +22,6 @@ const inventionSchema = mongoose.Schema({
   },
 });
 
-export const Invention = mongoose.model("Inventions", inventionSchema);
+const Invention = mongoose.model("Invention", inventionSchema);
+
+export default Invention;

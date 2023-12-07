@@ -14,8 +14,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const invention = new Invention({
     inventionName: req.body.invention,
-    country: req.body.country,
     inventor: req.body.inventor,
+    country: req.body.country,
     year: req.body.year,
     category: req.body.category,
   });

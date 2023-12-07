@@ -1,14 +1,6 @@
 import mongoose from "mongoose";
 const inventionSchema = new mongoose.Schema({
-  category: {
-    type: String,
-    required: true,
-  },
   inventionName: {
-    type: String,
-    required: true,
-  },
-  country: {
     type: String,
     required: true,
   },
@@ -16,10 +8,19 @@ const inventionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  country: {
+    type: String,
+    required: true,
+  },
   year: {
     type: Number,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
+
 });
 
 const Invention = mongoose.model("Invention", inventionSchema);

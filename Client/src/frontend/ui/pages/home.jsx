@@ -62,15 +62,16 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch(`${apiUrl}/inventionsByYear?year=2015&limit=4`)
+    fetch(`${apiUrl}/inventions/${2014}`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Fetched latest inventions:", data);
         setLatestInventions(data);
-        // console.log("latestInventions state after setting:", latestInventions);
       })
       .catch((error) => {
-        console.error("Error fetching latest inventions:", error);
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 

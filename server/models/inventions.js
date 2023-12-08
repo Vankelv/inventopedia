@@ -13,13 +13,16 @@ const inventionSchema = new mongoose.Schema({
     required: true,
   },
   year: {
-    type: Number,
+    type: String,
     required: true,
   },
   category: {
     type: String,
     required: true,
   },
+  image: {
+    type: Buffer,
+  }
 
 });
 

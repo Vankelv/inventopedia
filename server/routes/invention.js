@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from "express";
 const router = express.Router();
 import Invention from "../models/inventions.js";
 
@@ -11,6 +11,19 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET INVENTION BY ID
+router.get("/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const invention = await Invention.findById(id);
+
+    return response(200).json(invention);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
 router.post("/", async (req, res) => {
   const invention = new Invention({
     inventionName: req.body.inventionName,
@@ -18,6 +31,7 @@ router.post("/", async (req, res) => {
     country: req.body.country,
     year: req.body.year,
     category: req.body.category,
+    image: req.body.image,
   });
   try {
     const newInvention = await invention.save();
@@ -27,6 +41,65 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Invention.findByIdAndDelete(id);
+    if (!result) {
+      return response.status(400).json({ message: "Invention not found" });
+    }
+    return res.status(200).send({ message: "Invention deleted successfully" });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    if (
+      !req.body.inventionName ||
+      !req.body.inventor ||
+      !req.body.country ||
+      !req.body.year ||
+      !req.body.category ||
+      !req.body.image
+    ) {
+      return res.status(400).send({
+        message:
+          "Send all required fields: Invention name, Inventor, year, category, country and image",
+      });
+    }
+    const { id } = req.params;
+    const result = await Invention.findByIdAndUpdate(id, req.body);
+
+    if (!result) {
+      return res.status(400).json({ message: "Invention not found" });
+    }
+
+    return res.status(200).send({ message: "Invention updated successfully" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+// Invention by year 2014
+router.get('/inventions/:year', async (req, res) => {
+  try {
+    const startYear = parseInt(req.params.year, 10);
+    if (isNaN(startYear)) {
+      return res.status(400).json({ error: 'Invalid startYear parameter' });
+    }
+
+    const currentYear = new Date().getFullYear();
+    const inventions = await Invention.find({ year: { $gte: startYear, $lte: currentYear } });
+    res.json(inventions);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 export default router;

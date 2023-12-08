@@ -73,17 +73,21 @@ const InventionList = () => {
                         alt={`invention ${val + 1}`}
                       />
                       <p>
-                        <strong>Inventor:</strong> {val.inventor}
+                        <strong>Inventor: </strong> {val.inventor}
                       </p>
                       <p>
-                        <strong>Invention Name:</strong> {val.inventionName}
+                        <strong>Invention Name: </strong> {val.inventionName}
                       </p>
                       <p>
                         <strong>Country: </strong>
                         {val.country}
                       </p>
                       <p>
-                        <strong>Year:</strong> {val.year}
+                        <strong>Year: </strong> {val.year}
+                      </p>
+                      <p>
+                        <strong>Category: </strong>
+                        {val.category}
                       </p>
                       <button className="inventview">View</button>
                     </Card>

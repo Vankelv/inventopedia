@@ -22,7 +22,7 @@ const InventionList = () => {
     setLoading(true);
 
     setTimeout(() => {
-      fetch("http://localhost:8080/invention")
+      fetch("http://localhost:8080/inventions")
         .then((res) => res.json())
         .then((data) => {
           // console.log("Fetched data:", data); // Debugging log

@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const invention = new Invention({
-    inventionName: req.body.invention,
+    inventionName: req.body.inventionName,
     inventor: req.body.inventor,
     country: req.body.country,
     year: req.body.year,
@@ -26,5 +26,7 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+
 
 export default router;

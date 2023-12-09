@@ -86,20 +86,18 @@ router.put("/:id", async (req, res) => {
 });
 
 // Invention by year 2014
-router.get('/inventions/:year', async (req, res) => {
+router.get('/inventions', async (req, res) => {
   try {
-    const startYear = parseInt(req.params.year, 10);
-    if (isNaN(startYear)) {
-      return res.status(400).json({ error: 'Invalid startYear parameter' });
-    }
-
-    const currentYear = new Date().getFullYear();
-    const inventions = await Invention.find({ year: { $gte: startYear, $lte: currentYear } });
+    const startYear = '2014';
+    const inventions = await Invention.find({ year: { $eq: startYear } });
     res.json(inventions);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
 
 
 export default router;

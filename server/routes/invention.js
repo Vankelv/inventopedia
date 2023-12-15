@@ -86,18 +86,21 @@ router.put("/:id", async (req, res) => {
 });
 
 // Invention by year 2014
-
 router.get("/inventionsByYear", async (req, res) => {
   const year = parseInt(req.query.year) || 2015; 
-  res.set('Access-Control-Allow-Origin', '*'); // Change 'response' to 'res'
   
   try {
+<<<<<<< Updated upstream
     const inventions = await db.collection("Invention").find({ year: { $gte: year } }).toArray();
+=======
+    const inventions = await Invention.find({ year: { $gte: year } }).select('-_id');
+>>>>>>> Stashed changes
     return res.json(inventions);
   } catch (err) {
     return res.status(500).json({ error: "Failed to fetch inventions by year" });
   }
 });
+
 
 
 

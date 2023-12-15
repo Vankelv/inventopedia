@@ -86,16 +86,19 @@ router.put("/:id", async (req, res) => {
 });
 
 // Invention by year 2014
-router.get('/inventions', async (req, res) => {
+
+router.get("/inventionsByYear", async (req, res) => {
+  const year = parseInt(req.query.year) || 2015; 
+  res.set('Access-Control-Allow-Origin', '*'); // Change 'response' to 'res'
+  
   try {
-    const startYear = '2014';
-    const inventions = await Invention.find({ year: { $eq: startYear } });
-    res.json(inventions);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const inventions = await db.collection("inventions").find({ year: { $gte: year } }).toArray();
+    return res.json(inventions);
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to fetch inventions by year" });
   }
 });
+
 
 
 

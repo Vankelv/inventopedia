@@ -92,7 +92,7 @@ router.get("/inventionsByYear", async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*'); // Change 'response' to 'res'
   
   try {
-    const inventions = await db.collection("inventions").find({ year: { $gte: year } }).toArray();
+    const inventions = await db.collection("Invention").find({ year: { $gte: year } }).toArray();
     return res.json(inventions);
   } catch (err) {
     return res.status(500).json({ error: "Failed to fetch inventions by year" });

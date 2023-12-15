@@ -62,7 +62,7 @@ function Home() {
   };
   // LATEST INVENTIONS
   useEffect(() => {
-    fetch(`${apiUrl}/inventions/${2014}`)
+    fetch(`${apiUrl}/inventionsByYear?year=2014&limit=4`)
       .then((response) => response.json())
       .then((data) => {
         setLatestInventions(data);

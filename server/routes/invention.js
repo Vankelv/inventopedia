@@ -90,11 +90,7 @@ router.get("/inventionsByYear", async (req, res) => {
   const year = parseInt(req.query.year) || 2015; 
   
   try {
-<<<<<<< Updated upstream
-    const inventions = await db.collection("Invention").find({ year: { $gte: year } }).toArray();
-=======
     const inventions = await Invention.find({ year: { $gte: year } }).select('-_id');
->>>>>>> Stashed changes
     return res.json(inventions);
   } catch (err) {
     return res.status(500).json({ error: "Failed to fetch inventions by year" });

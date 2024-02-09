@@ -85,21 +85,17 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Invention by year 2014
+// Invention by year route
 router.get("/inventionsByYear", async (req, res) => {
-  const year = parseInt(req.query.year) || 2015; 
+  const year = parseInt(req.query.year) || 2015; // Default to 2015 if year parameter is not provided
   
   try {
-    const inventions = await Invention.find({ year: { $gte: year } }).select('-_id');
+    const inventions = await Invention.find({ year: year }).limit(parseInt(req.query.limit) || 0); // Apply limit if provided
     return res.json(inventions);
   } catch (err) {
     return res.status(500).json({ error: "Failed to fetch inventions by year" });
   }
 });
-
-
-
-
 
 
 export default router;

@@ -9,11 +9,11 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "http://localhost:5173", 
-  methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
+  origin: "http://localhost:5173",
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ["content-type"],
-})
-);
+}));
+
 
 app.get("/", (request, response) => {
   console.log(request);

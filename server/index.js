@@ -4,15 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-const corsOptions = {
-  origin: '*',
-  methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
-  credentials: true,
-  allowedHeaders: ["content-type"],
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+}));
 
 app.use(express.json());
 

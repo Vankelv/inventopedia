@@ -27,7 +27,7 @@ let db;
 async function connect() {
   db = client.db("Whoinventwhat");
   try {
-    await client.connect(uri);
+    await client.connect(MONGO_URI);
     console.log("Connected to MongoDb");
   } catch (error) {
     console.error(error);
@@ -196,7 +196,7 @@ app.delete('/inventions/:_id', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: ["https://who-invent-what-vankelv.vercel.app", "http://172.20.10.5:5173"],
+  origin: '*',
   methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
   credentials: true,
   allowedHeaders: ["content-type"],
@@ -71,9 +71,10 @@ app.get("/inventions", async (req, res) => {
 
 // LATEST INVENTIONS
 app.get("/inventionsByYear", async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*"); // Move this line to the top
+
   const year = parseInt(req.query.year) || 2015;
   const limit = parseInt(req.query.limit) || 10; // Default limit is set to 10, change as needed
-  res.set("Access-Control-Allow-Origin", "*");
 
   try {
     const inventions = await db
